@@ -1,0 +1,48 @@
+<h1 class="text-center my-4">Products</h1>
+
+<div class="container">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <% if product.image.present? %>
+            <img src="<%= product.image.url %>" alt="<%= product.name %>" class="card-img-top product-image">
+          <% else %>
+            <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 200px; background-color: #f8f9fa;">
+              <span>No image available</span>
+            </div>
+          <% end %>
+
+          <div class="card-body">
+            <h2 class="card-title"><%= product.name %></h2>
+            <p class="card-text"><%= product.description.truncate(100) %></p>
+            <p class="card-text"><strong><%= number_to_currency(product.price) %></strong></p>
+            <a href="<%= product_path(product) %>" class="btn btn-primary">View Details</a>
+          </div>
+
+          <div class="card-footer d-flex justify-content-between">
+            <% if user_signed_in? %>
+              <%= form_with model: LineItem.new, url: line_items_path, local: true do |f| %>
+                <%= f.hidden_field :product_id, value: product.id %>
+                <%= f.submit 'Add to Cart', class: 'btn btn-success' %>
+              <% end %>
+            <% end %>
+
+            <% if current_user&.admin? %>
+              <div class="btn-group" role="group">
+                <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning' %>
+                <%= link_to 'Delete', product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if current_user&.admin? %>
+    <div class="text-center mt-4">
+      <%= link_to 'New Product', new_product_path, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

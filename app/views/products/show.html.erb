@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @product.image.present? %>
+        <%= image_tag @product.image.url, alt: @product.name, class: 'img-fluid mb-3' %>
+      <% else %>
+        <p>No image available</p>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h1><%= @product.name %></h1>
+      <p class="lead"><%= @product.description %></p>
+      <p><%= number_to_currency(@product.price) %></p>
+
+      <% if user_signed_in? %>
+        <%= link_to 'Add to Cart', add_to_cart_product_path(@product), method: :post, class: 'btn btn-success my-3' %>
+      <% end %>
+
+      <% if current_user&.admin? %>
+        <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning me-3' %>
+        <%= link_to 'Delete', product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger me-3' %>
+      <% end %>
+
+      <%= link_to 'Back', products_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

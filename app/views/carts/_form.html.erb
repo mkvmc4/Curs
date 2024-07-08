@@ -1,0 +1,14 @@
+<%= form_with(model: cart) do |form| %>
+  <% if cart && cart.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+      <ul>
+        <% cart.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Ваш код формы здесь -->
+<% end %>

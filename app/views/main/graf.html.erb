@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .header {
+      background-color: rgba(0, 0, 0, 0.6); 
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin: 20px auto;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+      .header {
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Welcome to your Restaurant</h1>
+      <p>Your cozy place to enjoy the best dining experience in town. Discover our range of exquisite dishes and refreshing drinks in a warm, inviting atmosphere.</p>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="/images/cafe/restr1.jpg" alt="Restaurant Image 1">
+      </div>
+      <div class="gallery-item">
+        <img src="/images/cafe/restr2.jpg" alt="Restaurant Image 2">
+      </div>
+      <div class="gallery-item">
+        <img src="/images/cafe/restr3.jpg" alt="Restaurant Image 3">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
